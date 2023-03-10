@@ -14,7 +14,7 @@ Click the red "Generate Password" button to initiate the process. You will recie
 ![alt text](./assets/images/screenshot-password-generator.png)
 
 ## Credits
-Logic assistance from Tutor Jacob Nordan (noted in comments)
+Logic assistance from Tutor Jacob Nordan (noted in comments) <br>
 Number validation assistance from Instructor Tyler Calvert (noted in comments)
 
 ## License
