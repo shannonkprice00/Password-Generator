@@ -2,11 +2,12 @@
 
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var specialCharacters = [" ", "!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "@", "`", "^", "_", "{", "}", "|", "~" ];
+var specialCharacters = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "@", "`", "^", "_", "{", "}", "|", "~" ];
 var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 var generatePassword = function() {
   var passwordArray = []
+  var answer = ""
   var inputLength = window.prompt("Choose a length for your password");
 
   if(!inputLength) {
@@ -35,7 +36,8 @@ var generatePassword = function() {
   }
 
   if(inputLC) {
-    passwordArray.push(lowerCase);
+    passwordArray = passwordArray.concat(lowerCase);
+
   }
   
   var inputUC = window.confirm("Would you like to include Uppercase letters in your password?");
@@ -47,7 +49,7 @@ var generatePassword = function() {
   }
 
   if(inputUC) {
-    passwordArray.push(upperCase);
+    passwordArray = passwordArray.concat(upperCase);
   }
 
   var inputNumbers = window.confirm("Would you like to include numbers in your password?");
@@ -59,22 +61,32 @@ var generatePassword = function() {
   }
 
   if(inputNumbers) {
-    passwordArray.push(numbers);
+    passwordArray = passwordArray.concat(numbers);
   }
 
   var inputSpecialCharacters = window.confirm("Would you like to include special characters in your password?");
 
   if(inputSpecialCharacters) {
     alert("Confirmed: include special characters");
-  } else {
+  } else if(passwordArray.length === 0) {
+    alert("You must select at least one character type")
+  } else  {
     alert("Password will NOT include special characters");
   }
 
   if(inputSpecialCharacters) {
-    passwordArray.push(specialCharacters);
+    passwordArray = passwordArray.concat(specialCharacters);
   }
 
+
+  for (var index = 0; index < inputLength; index++) {
+    var random = Math.floor(Math.random() * passwordArray.length);
+    answer += passwordArray[random];
+  }
+ 
+  return answer;
 }
+
 
 
 
@@ -91,5 +103,5 @@ function writePassword() {
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", generatePassword);
+generateBtn.addEventListener("click", writePassword);
 
